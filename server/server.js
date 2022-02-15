@@ -58,13 +58,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 /* ------------------------------- cors setup FOR LOCAL ------------------------------- */
-// const corsOptions = {
-//   origin: "http://localhost:3000",
-//   credentials: true,
-// };
-// app.use(cors(corsOptions));
+const corsOptions = {
+  origin: `http://localhost:${process.env.CLIENT_PORT}`,
+  credentials: true,
+};
+app.use(cors(corsOptions));
 /* ------------------------------- cors setup FOR EC2 ------------------------------- */
-app.use(cors());
+// app.use(cors());
 /* ----------------------------- GraphQL Options ---------------------------- */
 
 app.use(express.json());
@@ -132,7 +132,7 @@ io.on("connection", (socket) => {
 });
 
 /* --------------------------- RUN SERVER ON PORT --------------------------- */
-const port = process.env.PORT || 80;
+const port = 80;
 server.listen(port, () => {
   console.log("Listening on port: ", port);
 });
