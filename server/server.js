@@ -58,14 +58,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 /* ------------------------------- cors setup FOR LOCAL ------------------------------- */
-// const corsOptions = {
-//   origin: `${process.env.CLIENT_URL}`,
-//   credentials: true,
-// };
+const corsOptions = {
+  origin: `${process.env.CLIENT_URL}`,
+  credentials: true,
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 /* ------------------------------- cors setup FOR EC2 ------------------------------- */
-app.use(cors());
+// app.use(cors());
 /* ----------------------------- GraphQL Options ---------------------------- */
 
 app.use(express.json());
