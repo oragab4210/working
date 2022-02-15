@@ -59,7 +59,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 /* ------------------------------- cors setup FOR LOCAL ------------------------------- */
 const corsOptions = {
-  origin: `${process.env.CLIENT_PORT}`,
+  origin: `${process.env.CLIENT_URL}`,
   credentials: true,
 };
 app.use(cors(corsOptions));
