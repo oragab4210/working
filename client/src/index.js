@@ -28,41 +28,19 @@ const init = async () => {
 };
 
 /* -------------------------------cors setup FOR LOCAL------------------------------------------- */
-// const httpLink = new HttpLink({http://localhost:80/graphql})
-
-// const client = new ApolloClient({
-//   link:new HttpLink({ `http://localhost:80/graphql`}),
-//   cache: cache,
-//   // credentials: "include",
-// });
-
-const link = createHttpLink({
-  uri: "/graphql",
-  credentials: "same-origin",
-});
-
+const linkInfoEC2 = { uri: "/graphql", credentials: "same-origin" };
+const linkInfoDev = {
+  uri: "http://localhost:80/graphql",
+  credentials: "include",
+};
+const link = new HttpLink(linkInfoEC2);
+// const link = new HttpLink(linkInfoDev);
 const client = new ApolloClient({
   cache: cache,
-  link,
+  link: link,
 });
 
-//hi
-
-/* ------------------------------- cors setup FOR EC2 ------------------------------- */
-// const httpLink = new HttpLink({
-//   uri: `http://localhost:${
-//     process.env.REACT_APP_GRAPHQL_PORT
-//       ? process.env.REACT_APP_GRAPHQL_PORT
-//       : 4000
-//   }/graphql`,
-// });
-// const client = new ApolloClient({
-//   link: new HttpLink({
-//     link: httpLink,
-//   }),
-//   cache: cache,
-//   connectToDevTools: true,
-// });
+/* -------------------------------------------------------------------------- */
 
 try {
   cache.readQuery({
