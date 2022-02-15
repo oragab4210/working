@@ -11,6 +11,7 @@ import {
   ApolloProvider,
   InMemoryCache,
   HttpLink,
+  createHttpLink,
 } from "@apollo/client";
 import { persistCache, LocalStorageWrapper } from "apollo3-cache-persist";
 import CurrentUser from "./GQL/queries/CurrentUser";
@@ -29,12 +30,9 @@ const init = async () => {
 /* -------------------------------cors setup FOR LOCAL------------------------------------------- */
 
 const client = new ApolloClient({
-  link: new HttpLink({
-    uri: `http://localhost:80/graphql`,
-    credentials: "include",
-  }),
+  uri: `http://localhost:80/graphql`,
   cache: cache,
-  connectToDevTools: true,
+  credentials: "include",
 });
 
 /* ------------------------------- cors setup FOR EC2 ------------------------------- */
