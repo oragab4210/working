@@ -33,8 +33,8 @@ const linkInfoDev = {
   uri: "http://localhost:80/graphql",
   credentials: "include",
 };
-const link = new HttpLink(linkInfoEC2);
-// const link = new HttpLink(linkInfoDev);
+// const link = new HttpLink(linkInfoEC2);
+const link = new HttpLink(linkInfoDev);
 const client = new ApolloClient({
   cache: cache,
   link: link,
